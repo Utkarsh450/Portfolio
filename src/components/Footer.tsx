@@ -1,4 +1,4 @@
-import { Globe, Mail, MoreHorizontal } from 'lucide-react';
+import { Globe, Mail } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
