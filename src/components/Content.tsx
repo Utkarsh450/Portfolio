@@ -1,5 +1,4 @@
 import Front from './Front'
-import { MapPin } from "lucide-react";
 import { LocationDot } from "./LocationDot"
 
 const Content = () => {

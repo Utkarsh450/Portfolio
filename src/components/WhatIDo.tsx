@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -106,7 +106,7 @@ const NumberScramble = ({ text }: { text: string }) => {
                     
                     textRef.current.innerText = text
                         .split("")
-                        .map((char, index) => {
+                        .map((_, index) => {
                             // Progressively lock characters from left to right
                             if (index < (iteration / maxIterations) * text.length) {
                                 return text[index];

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { MapPin } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -147,7 +147,7 @@ const Experience = () => {
 
                     {/* Moving Track */}
                     <div ref={trackRef} className="flex items-center w-max px-[10vw] relative z-10 h-full">
-                        {experiences.map((exp, index) => {
+                        {experiences.map((exp) => {
                             const colors = themeColors[exp.theme] || themeColors.blue;
 
                             return (
