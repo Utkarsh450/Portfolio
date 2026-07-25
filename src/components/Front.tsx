@@ -54,14 +54,7 @@ const Front = () => {
         </div>
       
         <div className='text-zinc-50 text-[1.2rem] mt-34 flex items-center font-medium font-satoshi tracking-wide'>
-            {splitText("Building consumer & enterprise products @ ", 'b')}
-            
-            <div className="mygate-badge ml-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/20 shadow-sm">
-                <div className="w-5 h-5 rounded bg-[#FFD700] flex items-center justify-center">
-                    <span className="text-[10px] font-bold text-black leading-none">m</span>
-                </div>
-                <span className="text-white text-base font-bold tracking-wide">mygate</span>
-            </div>
+            {splitText("Architecting Next-Gen AI Agents & Scalable Systems", 'b')}
         </div>
     </div>
   )

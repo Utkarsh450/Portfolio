@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Content from './components/Content'
 import WhatIDo from './components/WhatIDo';
+import Work from './components/Work';
 import SectionSeparator from './components/SectionSeparator';
 import AboutMe from './components/AboutMe';
 import Experience from './components/Experience';
@@ -14,6 +15,8 @@ const App = () => {
       <Content/>
       {/* <SectionSeparator /> */}
       <WhatIDo/>
+      <SectionSeparator />
+      <Work/>
       <SectionSeparator />
       <AboutMe/>
       <SectionSeparator />

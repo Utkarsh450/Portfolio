@@ -90,7 +90,7 @@ const Footer = () => {
                         {/* Video Card - Floating */}
                         <div className="w-[300px] h-[160px] md:w-[480px] md:h-[260px] rounded-[24px] overflow-hidden border-[3px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.3)] rotate-3 shrink-0 transition-transform hover:rotate-0 duration-500 ease-out bg-black/10">
                             <video
-                                src="/Video.mp4"
+                                src="/Video1.mp4"
                                 autoPlay
                                 loop
                                 muted

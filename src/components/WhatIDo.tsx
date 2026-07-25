@@ -43,7 +43,7 @@ const WhatIDo = () => {
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12 md:gap-20">
             {/* Left column */}
             <div className="w-full md:w-1/3 shrink-0">
-                <div className="font-semibold text-zinc-500 font-satoshi uppercase text-md tracking-[0.2em] flex items-center gap-3">
+                <div className="font-semibold text-zinc-500 font-satoshi uppercase text-md flex items-center gap-3">
                     <span className="text-[#0066FF] text-xl leading-none">✦</span> WHAT I DO
                 </div>
             </div>
@@ -65,9 +65,9 @@ const WhatIDo = () => {
                 <div className="flex flex-col sm:flex-row gap-16 md:gap-24 w-full max-w-[800px]">
                     <div className="flex-1 flex flex-col">
                         <div className="text-[#0281e0] text-[4rem] md:text-[3rem] font-medium leading-none tracking-tighter pb-6 border-b border-zinc-200 mb-6">
-                            <NumberScramble text="1 yr" />
+                            <NumberScramble text="1 year" />
                         </div>
-                        <div className="font-semibold text-xl md:text-xl text-[#1a1a1a] mb-3 tracking-tight">Years designing</div>
+                        <div className="font-semibold text-xl md:text-xl text-[#1a1a1a] mb-3 tracking-tight">of development</div>
                         <p className="text-zinc-500 text-base font-medium md:text-md leading-relaxed">
                             consumer products, enterprise software & design systems
                         </p>
