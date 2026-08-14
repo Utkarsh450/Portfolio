@@ -31,7 +31,7 @@ const AboutMe = () => {
   const headingText = "a little about myself";
 
   return (
-    <section className="w-full bg-white py-24 md:py-32 px-6 md:px-12 lg:px-24">
+    <section id="about" className="w-full bg-white py-24 md:py-32 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start gap-16 md:gap-20">
             {/* Left column - Image */}
             <div className="w-full md:w-5/12 flex justify-center md:justify-start lg:justify-center shrink-0">

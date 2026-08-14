@@ -110,7 +110,7 @@ const Work = () => {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="w-full bg-[#FAFAFA] py-16 md:py-24 relative">
+        <section id="work" ref={sectionRef} className="w-full bg-[#FAFAFA] py-16 md:py-24 relative">
             {/* Header Section */}
             <div className="w-full flex flex-col items-center text-center px-6 mb-12 md:mb-16">
                 {/* Badge */}

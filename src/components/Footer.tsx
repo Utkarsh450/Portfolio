@@ -17,13 +17,33 @@ const Footer = () => {
             opacity: 1,
             filter: 'blur(0px)',
             duration: 0.6,
-            stagger: 0.04, // Faster stagger since it's a long sentence
+            stagger: 0.04,
             ease: 'power2.out',
             scrollTrigger: {
                 trigger: footerRef.current,
                 start: "top 85%"
             }
         });
+
+        // Video card — slide up from below
+        const videoCard = footerRef.current?.querySelector('.footer-video-card');
+        if (videoCard) {
+            gsap.fromTo(videoCard,
+                { y: 120, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: videoCard,
+                        start: 'top 95%',
+                        end: 'top 50%',
+                        scrub: 1,
+                    }
+                }
+            );
+        }
     }, { scope: footerRef });
 
     return (
@@ -88,7 +108,7 @@ const Footer = () => {
                         </div>
 
                         {/* Video Card - Floating */}
-                        <div className="w-[300px] h-[160px] md:w-[480px] md:h-[260px] rounded-[24px] overflow-hidden border-[3px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.3)] rotate-3 shrink-0 transition-transform hover:rotate-0 duration-500 ease-out bg-black/10">
+                        <div className="footer-video-card w-[300px] h-[160px] md:w-[480px] md:h-[260px] rounded-[24px] overflow-hidden border-[3px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.3)] rotate-3 shrink-0 transition-transform hover:rotate-0 duration-500 ease-out bg-black/10">
                             <video
                                 src="/Video1.mp4"
                                 autoPlay
