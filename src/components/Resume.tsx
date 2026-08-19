@@ -1,4 +1,5 @@
 import { ArrowLeft, Download, Mail, Phone, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
@@ -96,163 +97,163 @@ const Resume = ({ onBack }: ResumeProps) => {
                 </div>
             </div>
 
-            {/* Resume Sheet Paper - UI Matching Reference Image */}
-            <div className="w-full max-w-3xl -rotate-1 mx-auto px-4 sm:px-6 relative z-10">
+            {/* Resume Sheet Paper */}
+            <div className="w-full max-w-[760px] -rotate-2 mx-auto px-4 sm:px-6 relative z-10 transform origin-top hover:scale-[1.02] transition-transform duration-500">
                 <div 
                     ref={paperRef} 
-                    className="bg-white  shadow-[0_30px_90px_rgba(0,0,0,0.12)] border border-white/80 p-8 sm:p-14 md:p-16 relative overflow-hidden"
+                    className="bg-white shadow-[0_20px_60px_rgba(0,0,0,0.1)] border border-zinc-200 p-8 sm:p-10 md:p-12 relative overflow-hidden text-zinc-900"
                 >
                     {/* Header */}
-                    <div className="mb-8">
-                        <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight font-satoshi mb-1">
+                    <div className="mb-5 text-center sm:text-left">
+                        <h2 className="text-2xl sm:text-[28px] font-extrabold text-zinc-900 tracking-tight font-serif mb-0.5">
                             Utkarsh Barnwal
                         </h2>
-                        <p className="text-[#0278FC] font-bold text-xs tracking-wider uppercase font-satoshi mb-6">
-                            Full Stack & Systems Engineer
+                        <p className="text-zinc-600 font-medium text-[11px] uppercase tracking-wider mb-3">
+                            Greater Noida, Uttar Pradesh
                         </p>
 
-                        {/* Contact Info Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8 text-xs font-medium text-zinc-600">
-                            {/* Phone */}
-                            <div className="flex items-center gap-3">
-                                <div className="w-7 h-7 rounded-full bg-[#EBF3FF] text-[#0278FC] flex items-center justify-center shrink-0 shadow-2xs">
-                                    <Phone size={13} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[10px] text-zinc-400 font-semibold uppercase">Phone</span>
-                                    <span className="text-zinc-800 font-semibold">+91 98765 43210</span>
-                                </div>
-                            </div>
-
-                            {/* Email */}
-                            <div className="flex items-center gap-3">
-                                <div className="w-7 h-7 rounded-full bg-[#EBF3FF] text-[#0278FC] flex items-center justify-center shrink-0 shadow-2xs">
-                                    <Mail size={13} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[10px] text-zinc-400 font-semibold uppercase">Email</span>
-                                    <a href="mailto:ubarnwal0802@gmail.com" className="text-zinc-800 font-semibold hover:text-[#0278FC] transition-colors">ubarnwal0802@gmail.com</a>
-                                </div>
-                            </div>
-
-                            {/* Portfolio */}
-                            <div className="flex items-center gap-3">
-                                <div className="w-7 h-7 rounded-full bg-[#EBF3FF] text-[#0278FC] flex items-center justify-center shrink-0 shadow-2xs">
-                                    <Globe size={13} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[10px] text-zinc-400 font-semibold uppercase">Portfolio</span>
-                                    <a href="#" className="text-zinc-800 font-semibold hover:text-[#0278FC] transition-colors">utkarsh.dev</a>
-                                </div>
-                            </div>
-
-                            {/* LinkedIn */}
-                            <div className="flex items-center gap-3">
-                                <div className="w-7 h-7 rounded-full bg-[#EBF3FF] text-[#0278FC] flex items-center justify-center shrink-0 shadow-2xs">
-                                    {/* <Linkedin size={13} /> */}
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[10px] text-zinc-400 font-semibold uppercase">LinkedIn</span>
-                                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-zinc-800 font-semibold hover:text-[#0278FC] transition-colors">linkedin.com/in/utkarsh</a>
-                                </div>
-                            </div>
+                        {/* Contact Info */}
+                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1.5 text-[11px] font-medium text-zinc-600">
+                            <Link to="tel:+917015589772" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                                <Phone size={12} className="text-zinc-400" />
+                                <span>+91-7015589772</span>
+                            </Link>
+                            <Link to="mailto:ubarnwal0802@gmail.com" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                                <Mail size={12} className="text-zinc-400" />
+                                <span>ubarnwal0802@gmail.com</span>
+                            </Link>
+                            <Link to="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                                <Globe size={12} className="text-zinc-400" />
+                                <span>LinkedIn</span>
+                            </Link>
+                            <Link to="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                                <Globe size={12} className="text-zinc-400" />
+                                <span>Github</span>
+                            </Link>
                         </div>
                     </div>
 
                     {/* Section: SUMMARY */}
-                    <div className="mb-9">
-                        <div className="border-b border-zinc-200/80 pb-1 mb-3">
-                            <h3 className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">
+                    <div className="mb-4">
+                        <div className="border-b border-zinc-400 pb-0.5 mb-2">
+                            <h3 className="text-[11px] font-bold text-zinc-900 uppercase tracking-widest font-serif">
                                 Summary
                             </h3>
                         </div>
-                        <p className="text-xs sm:text-[13px] text-zinc-600 leading-relaxed font-satoshi">
-                            Full Stack & Systems Engineer with experience across consumer and enterprise products spanning payments, agentic AI, real-time access control, and high-concurrency cloud architecture. Experienced in taking complex products from early solutioning through launch while working closely with product managers and engineers.
+                        <p className="text-[11px] sm:text-xs text-zinc-800 leading-relaxed font-sans text-justify">
+                            Full Stack Developer with experience building end-to-end web applications and AI-driven products. Skilled at transforming ideas into scalable, high-performance solutions with a focus on user experience and software quality.
                         </p>
                     </div>
 
-                    {/* Section: EXPERIENCE */}
-                    <div className="mb-9">
-                        <div className="border-b border-zinc-200/80 pb-1 mb-6">
-                            <h3 className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">
-                                Experience
+                    {/* Section: EDUCATION */}
+                    <div className="mb-4">
+                        <div className="border-b border-zinc-400 pb-0.5 mb-2">
+                            <h3 className="text-[11px] font-bold text-zinc-900 uppercase tracking-widest font-serif">
+                                Education
                             </h3>
                         </div>
-
-                        <div className="space-y-7">
-                            {/* Job 1: Mygate */}
-                            <div className="flex items-start gap-3.5">
-                                <div className="w-9 h-9 rounded-lg bg-amber-400 text-zinc-950 font-bold flex items-center justify-center text-xs shrink-0 shadow-xs border border-amber-300">
-                                    <span className="font-mono">mr</span>
-                                </div>
-                                <div className="w-full">
-                                    <div className="flex justify-between items-baseline mb-0.5">
-                                        <h4 className="font-bold text-sm text-zinc-900">Mygate</h4>
-                                        <span className="text-[11px] text-zinc-400 font-medium italic">Aug 2024 – Present</span>
-                                    </div>
-                                    <p className="text-xs font-semibold text-zinc-500 mb-2">Product Engineer</p>
-                                    <p className="text-xs text-zinc-600 leading-relaxed mb-2.5">
-                                        Worked across Resident App, ERP, Payments, Helpdesk, AI Initiatives, and Smart Devices, partnering closely with PMs and engineers from solutioning through launch.
-                                    </p>
-                                    <ul className="text-xs text-zinc-600 space-y-1.5 list-disc list-inside leading-relaxed pl-1">
-                                        <li>Owned the end-to-end design & architecture of QuickPass, a 0→1 access solution that streamlined delivery entry workflows and is now used across 500+ societies with 28K+ downloads.</li>
-                                        <li>Designed & engineered Mira, an AI support assistant within the Mygate app that now resolves 85% of resident queries without human intervention.</li>
-                                        <li>Led the engineering of Bills & Recharges, enabling residents to complete utility payments and recharges directly within Mygate through Bharat Connect.</li>
-                                        <li>Led the design of Saarthi, a dedicated technician workflow app for managing and resolving society maintenance requests, now adopted across 1,700+ societies by 8,000+ staff members.</li>
-                                        <li>Redesigned Mygate's checkout experience, reducing payment drop-offs by 14%, improving transaction success rates by 11%, and increasing card transaction share by 12%.</li>
-                                    </ul>
-                                </div>
+                        <div className="flex justify-between items-start text-[11px] sm:text-xs text-zinc-800">
+                            <div>
+                                <h4 className="font-bold text-zinc-900">Lloyd Institute of Engineering and Technology</h4>
+                                <p>Bachelor of Technology (B.Tech) &nbsp;|&nbsp; <span className="font-semibold">CGPA: 7.8</span></p>
                             </div>
-
-                            {/* Job 2: Mygate Intern */}
-                            <div className="flex items-start gap-3.5">
-                                <div className="w-9 h-9 rounded-lg bg-amber-400 text-zinc-950 font-bold flex items-center justify-center text-xs shrink-0 shadow-xs border border-amber-300">
-                                    <span className="font-mono">mr</span>
-                                </div>
-                                <div className="w-full">
-                                    <div className="flex justify-between items-baseline mb-0.5">
-                                        <h4 className="font-bold text-sm text-zinc-900">Mygate</h4>
-                                        <span className="text-[11px] text-zinc-400 font-medium italic">Jun 2024 – Aug 2024</span>
-                                    </div>
-                                    <p className="text-xs font-semibold text-zinc-500 mb-2">Software Design Intern</p>
-                                    <ul className="text-xs text-zinc-600 space-y-1.5 list-disc list-inside leading-relaxed pl-1">
-                                        <li>Designed the MVP experience for Mygate Video Doorbell and contributed to onboarding and management experiences across the Smart Devices ecosystem.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            {/* Job 3: Gida Technologies */}
-                            <div className="flex items-start gap-3.5">
-                                <div className="w-9 h-9 rounded-lg bg-zinc-900 text-white font-bold flex items-center justify-center text-xs shrink-0 shadow-xs">
-                                    <span className="font-mono">g</span>
-                                </div>
-                                <div className="w-full">
-                                    <div className="flex justify-between items-baseline mb-0.5">
-                                        <h4 className="font-bold text-sm text-zinc-900">Gida Technologies</h4>
-                                        <span className="text-[11px] text-zinc-400 font-medium italic">Dec 2023 – Apr 2024</span>
-                                    </div>
-                                    <p className="text-xs font-semibold text-zinc-500 mb-2">UI / UX & Systems Intern</p>
-                                    <ul className="text-xs text-zinc-600 space-y-1.5 list-disc list-inside leading-relaxed pl-1">
-                                        <li>Designed key experiences for HDFC ERGO's HERE App, including insurance purchase journeys and HERE Pets.</li>
-                                    </ul>
-                                </div>
+                            <div className="text-right shrink-0">
+                                <span className="font-bold block">Jun 2022 – Jun 2026</span>
+                                <span className="italic text-zinc-600">Greater Noida, UP</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Section: EDUCATION */}
-                    <div>
-                        <div className="border-b border-zinc-200/80 pb-1 mb-4">
-                            <h3 className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">
-                                Education
+                    {/* Section: EXPERIENCE */}
+                    <div className="mb-4">
+                        <div className="border-b border-zinc-400 pb-0.5 mb-2">
+                            <h3 className="text-[11px] font-bold text-zinc-900 uppercase tracking-widest font-serif">
+                                Experience
                             </h3>
                         </div>
-                        <div className="flex justify-between items-start text-xs">
-                            <div>
-                                <h4 className="font-bold text-zinc-900">Bachelor of Technology in Computer Science & Engineering</h4>
-                                <p className="text-zinc-500 font-medium">Autonomous Institute of Engineering & Technology</p>
+                        <div className="space-y-3">
+                            <div className="text-[11px] sm:text-xs text-zinc-800">
+                                <div className="flex justify-between items-start mb-0.5">
+                                    <div>
+                                        <h4 className="font-bold text-zinc-900 text-[12px]">Excellence Technologies Pvt. Ltd.</h4>
+                                        <p className="italic text-zinc-700">AI Developer</p>
+                                    </div>
+                                    <div className="text-right shrink-0">
+                                        <span className="font-bold block">May 2026 – Present</span>
+                                        <span className="italic text-zinc-600">Greater Noida, UP</span>
+                                    </div>
+                                </div>
+                                <ul className="list-disc list-outside ml-4 mt-1 space-y-1 text-justify">
+                                    <li>Developed AI-powered web applications using React.js, Next.js, TypeScript, and Tailwind CSS, delivering responsive and intuitive user experiences.</li>
+                                    <li>Integrated OpenAI APIs and REST APIs to build intelligent, data-driven features while implementing efficient client-side state management.</li>
+                                    <li>Optimized application performance using code splitting, lazy loading, and Server-Side Rendering (SSR), improving responsiveness and overall user experience.</li>
+                                </ul>
                             </div>
-                            <span className="text-zinc-400 font-medium italic text-[11px]">2020 – 2024</span>
+                        </div>
+                    </div>
+
+                    {/* Section: TECHNICAL SKILLS */}
+                    <div className="mb-4">
+                        <div className="border-b border-zinc-400 pb-0.5 mb-2">
+                            <h3 className="text-[11px] font-bold text-zinc-900 uppercase tracking-widest font-serif">
+                                Technical Skills
+                            </h3>
+                        </div>
+                        <div className="text-[11px] sm:text-[11.5px] text-zinc-800 space-y-1">
+                            <p><span className="font-bold">Languages:</span> JavaScript, TypeScript, Python</p>
+                            <p><span className="font-bold">Frontend:</span> React.js, Next.js, Tailwind CSS, HTML5, CSS3, Framer Motion</p>
+                            <p><span className="font-bold">Backend:</span> Node.js, Express.js, FastAPI, REST APIs, JWT</p>
+                            <p><span className="font-bold">Databases & Storage:</span> PostgreSQL, MongoDB, Redis, pgvector, ChromaDB, Pinecone</p>
+                            <p><span className="font-bold">AI & LLM:</span> OpenAI APIs, LLMs, RAG, LangChain, AI Agents</p>
+                            <p><span className="font-bold">Background Processing:</span> Inngest, RabbitMQ, Redis Pub/Sub</p>
+                            <p><span className="font-bold">State Management:</span> Redux Toolkit, Zustand, Context API, TanStack Query</p>
+                            <p><span className="font-bold">Data Fetching:</span> Axios, Fetch API</p>
+                            <p><span className="font-bold">Performance:</span> SSR, SSG, Code Splitting, Lazy Loading, Responsive Design, Accessibility (a11y)</p>
+                            <p><span className="font-bold">Tools & DevOps:</span> Git, GitHub, Docker, Nginx, Linux, VPS, Vercel, Netlify, CI/CD (Basics)</p>
+                        </div>
+                    </div>
+
+                    {/* Section: PROJECTS */}
+                    <div className="mb-2">
+                        <div className="border-b border-zinc-400 pb-0.5 mb-2">
+                            <h3 className="text-[11px] font-bold text-zinc-900 uppercase tracking-widest font-serif">
+                                Projects
+                            </h3>
+                        </div>
+                        <div className="space-y-4">
+                            {/* Project 1 */}
+                            <div className="text-[11px] sm:text-xs text-zinc-800">
+                                <div className="flex justify-between items-baseline mb-0.5">
+                                    <h4 className="font-bold text-zinc-900 text-[12px]">
+                                        HireFlow <span className="font-normal text-zinc-700">– AI Job Automation Platform</span>
+                                    </h4>
+                                    <span className="font-bold shrink-0">2026</span>
+                                </div>
+                                <p className="italic text-zinc-600 mb-1">Next.js, Node.js, PostgreSQL (pgvector), Inngest, Playwright</p>
+                                <ul className="list-disc list-outside ml-4 space-y-1 text-justify">
+                                    <li>Built an AI-powered platform that automates job discovery, semantic matching, and ATS job applications.</li>
+                                    <li>Engineered an asynchronous pipeline using Inngest, pgvector, and vector embeddings for intelligent job retrieval.</li>
+                                    <li>Implemented AI-powered job ranking and gap analysis using OpenAI Agent SDK and BGE Cross-Encoder reranking.</li>
+                                    <li>Automated end-to-end job applications using Playwright, AI-generated resumes, and cover letters.</li>
+                                </ul>
+                            </div>
+
+                            {/* Project 2 */}
+                            <div className="text-[11px] sm:text-xs text-zinc-800">
+                                <div className="flex justify-between items-baseline mb-0.5">
+                                    <h4 className="font-bold text-zinc-900 text-[12px]">
+                                        VocalAI <span className="font-normal text-zinc-700">– AI Voice Call Center Platform</span>
+                                    </h4>
+                                    <span className="font-bold shrink-0">2026</span>
+                                </div>
+                                <p className="italic text-zinc-600 mb-1">Next.js, FastAPI, PostgreSQL, Redis, LiveKit, WebSockets</p>
+                                <ul className="list-disc list-outside ml-4 space-y-1 text-justify">
+                                    <li>Built an AI-powered voice call center platform to automate customer support through real-time voice conversations.</li>
+                                    <li>Integrated LiveKit and OpenAI APIs for low-latency speech recognition, LLM processing, and voice synthesis.</li>
+                                    <li>Developed a FastAPI backend using PostgreSQL, Redis Pub/Sub, and WebSockets for real-time communication.</li>
+                                    <li>Implemented RAG and an admin dashboard for AI agent management, analytics, and conversation history.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 

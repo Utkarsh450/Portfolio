@@ -79,31 +79,40 @@ const Work = () => {
 
         if (cards.length === 0) return;
 
-        // Set the sticky `top` for each card: card1 → 0, card2 → 35px, card3 → 70px
+        // Set the sticky `top` for each card to create the stacked look.
+        // We use a base 12vh so it doesn't stick directly to the very top edge,
+        // plus the stagger offset to create the layered folders look.
         cards.forEach((card, idx) => {
-            gsap.set(card, { top: idx * STACK_OFFSET });
+            gsap.set(card, { top: `calc(12vh + ${idx * STACK_OFFSET}px)` });
         });
 
-        // Scale & dim each card as the NEXT card scrolls up over it
-        // Deeper cards (lower index) scale MORE so the top card is always biggest
-        cards.forEach((_card, index) => {
-            if (index === cards.length - 1) return; // last card stays untouched
+        // Framer/Sanjay Menon style Premium Stack Animation (Progressive)
+        const totalCards = cards.length;
+        
+        cards.forEach((card, index) => {
+            if (index === totalCards - 1) return; // last card stays untouched
 
-            const depth = cards.length - 1 - index;    // card 1 → depth 2, card 2 → depth 1
-            const targetScale = 1 - depth * 0.03;      // card 1 → 0.94,  card 2 → 0.97
-            const targetOpacity = 1 - depth * 0.2;     // card 1 → 0.6,   card 2 → 0.8
-            const pinY = (index + 1) * STACK_OFFSET;    // next card's pin position
-
+            // The number of cards that will stack on top of THIS card
+            const remainingCards = totalCards - 1 - index;
+            
+            // Progressive Animation:
+            // The animation maps over the entire scroll distance from when the immediate NEXT card 
+            // enters the screen, until the VERY LAST card reaches its sticky resting point.
+            // Because we use ease: 'none', the intermediate states (when intermediate cards pin)
+            // will perfectly align with intermediate scale/opacity values.
             ScrollTrigger.create({
                 trigger: cards[index + 1],
-                start: 'top bottom',                    // next card enters viewport bottom
-                end: `top ${pinY}px`,                   // next card reaches its pin position
-                scrub: 1,                               // smooth 1s catch-up
+                start: 'top bottom', // Start when immediate next card enters from bottom
+                endTrigger: cards[totalCards - 1], // End relative to the LAST card in the stack
+                end: `top calc(12vh + ${(totalCards - 1) * STACK_OFFSET}px)`, // End when last card hits its sticky point
+                scrub: 0.5, // Fluid interpolation
                 invalidateOnRefresh: true,
                 animation: gsap.to(cardInners[index], {
-                    scale: targetScale,
-                    opacity: targetOpacity,
-                    ease: 'none',
+                    scale: 1 - (remainingCards * 0.05),          // Card 1 goes to 0.90, Card 2 goes to 0.95
+                    opacity: 1 - (remainingCards * 0.3),         // Progressive dimming (0.4, 0.7)
+                    filter: `blur(${remainingCards * 2}px)`,     // Progressive depth of field (4px, 2px)
+                    y: -(remainingCards * 15),                   // Progressive shift up to compress stack
+                    ease: 'none',                                // Linear ease ensures it matches the scroll precisely
                 }),
             });
         });
@@ -138,7 +147,7 @@ const Work = () => {
             </div>
 
             {/* Stacking Cards Container */}
-            <div className="w-full relative flex flex-col">
+            <div className="w-full relative flex flex-col px-4 md:px-4">
                 {projects.map((project, idx) => (
                     <div
                         key={project.id}
@@ -150,9 +159,9 @@ const Work = () => {
                         }}
                     >
                         <div 
-                            className={`stacked-card-inner w-full h-200 rounded-[32px] md:rounded-[40px] bg-gradient-to-br ${project.bgGradient} border border-white/25 shadow-2xl p-6 sm:p-8 md:p-10 overflow-hidden relative flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8`}
+                            className="stacked-card-inner w-full h-200 md:rounded-2xl bg-[url('/blue_sky.avif')] bg-cover bg-center bg-no-repeat border border-white/25 shadow-2xl p-6 sm:p-8 md:p-10 overflow-hidden relative flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8"
                             style={{
-                                willChange: 'transform, opacity',
+                                willChange: 'transform, opacity, filter',
                                 transformOrigin: 'top center',
                             }}
                         >
@@ -162,49 +171,51 @@ const Work = () => {
                             <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
 
                             {/* Left Side Glass Card */}
-                            <div className="relative z-10 w-full lg:w-1/2 bg-white/12 backdrop-blur-xl rounded-[24px] md:rounded-[28px] p-6 sm:p-8 md:p-9 border border-white/20 shadow-inner flex flex-col justify-between h-full max-h-[460px]">
+                            <div className="relative z-10 w-full lg:w-1/2 bg-white/10 backdrop-blur-xl rounded-[28px] md:rounded-[32px] p-7 sm:p-9 md:p-10 border border-white/20 shadow-inner flex flex-col justify-between h-full max-h-[460px]">
                                 <div>
-                                    <div className="flex items-center justify-between mb-4">
-                                        <div className="w-10 h-10 rounded-full border border-white/30 bg-white/15 backdrop-blur-md flex items-center justify-center text-sm font-semibold text-white shadow-sm">
+                                    <div className="flex items-center justify-between mb-6">
+                                        <div className="w-10 h-10 rounded-full border border-white/20 bg-white/10 flex items-center justify-center text-sm font-semibold text-white shadow-sm">
                                             {project.number}
                                         </div>
-                                        <span className="text-sm font-medium text-white/70 font-satoshi tracking-wider">{project.year}</span>
+                                        <span className="text-sm font-medium text-white/80 font-satoshi tracking-wide">{project.year}</span>
                                     </div>
                                     
-                                    <h3 className="text-2xl sm:text-3xl md:text-[2.1rem] font-bold font-satoshi text-white leading-tight mb-4 tracking-tight">
+                                    <h3 className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold font-satoshi text-white leading-[1.2] tracking-tight mb-5">
                                         {project.title}
                                     </h3>
 
-                                    <div className="flex flex-wrap gap-2 mb-4">
+                                    <div className="w-full h-px bg-white/20 mb-5"></div>
+
+                                    <div className="flex flex-wrap gap-2.5 mb-6">
                                         {project.tags.map((tag, tIdx) => (
-                                            <span key={tIdx} className="px-3.5 py-1.5 rounded-full bg-white/15 border border-white/20 text-xs md:text-sm font-medium text-white/90 backdrop-blur-md">
+                                            <span key={tIdx} className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs md:text-sm font-medium text-white/90">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <p className="text-white/80 text-sm font-satoshi leading-relaxed mb-6 line-clamp-3">
+                                    <p className="text-white/80 text-sm md:text-base font-satoshi leading-relaxed mb-6">
                                         {project.description}
                                     </p>
                                 </div>
 
-                                <div>
-                                    {project.isComingSoon ? (
-                                        <div className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/20 backdrop-blur-md text-white font-medium text-sm border border-white/30 shadow-sm">
-                                            <Lock size={16} />
-                                            <span>Coming Soon</span>
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-white font-medium text-sm backdrop-blur-md hover:bg-white/15 transition-colors cursor-default">
+                                        <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shadow-sm">
+                                            <Lock size={12} className="text-white" />
                                         </div>
-                                    ) : (
-                                        <a
-                                            href={project.link}
-                                            className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white text-[#0052D4] font-semibold text-sm hover:bg-white/95 transition-all shadow-lg group cursor-pointer"
-                                        >
-                                            <span>View Case Study</span>
-                                            <div className="w-7 h-7 rounded-full bg-[#001E50] text-white flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                                                <ArrowRight size={14} />
-                                            </div>
-                                        </a>
-                                    )}
+                                        <span className="pr-1">Coming Soon</span>
+                                    </div>
+                                    
+                                    <a
+                                        href={project.link}
+                                        className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white text-zinc-900 font-semibold text-sm hover:bg-white/90 transition-all shadow-lg"
+                                    >
+                                        <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center text-white shadow-inner">
+                                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 ml-0.5"><path d="M8 5v14l11-7z"/></svg>
+                                        </div>
+                                        <span className="pr-1">View in Playstore</span>
+                                    </a>
                                 </div>
                             </div>
 

@@ -65,9 +65,9 @@ const WhatIDo = () => {
                 <div className="flex flex-col sm:flex-row gap-16 md:gap-24 w-full max-w-[800px]">
                     <div className="flex-1 flex flex-col">
                         <div className="text-[#0281e0] text-[4rem] md:text-[3rem] font-medium leading-none tracking-tighter pb-6 border-b border-zinc-200 mb-6">
-                            <NumberScramble text="1 year" />
+                            <NumberScramble text="1+" />
                         </div>
-                        <div className="font-semibold text-xl md:text-xl text-[#1a1a1a] mb-3 tracking-tight">of development</div>
+                        <div className="font-semibold text-xl md:text-xl text-[#1a1a1a] mb-3 tracking-tight">years of development</div>
                         <p className="text-zinc-500 text-base font-medium md:text-md leading-relaxed">
                             consumer products, enterprise software & design systems
                         </p>

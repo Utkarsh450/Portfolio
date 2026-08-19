@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Content from './components/Content';
 import WhatIDo from './components/WhatIDo';
@@ -9,8 +12,39 @@ import Experience from './components/Experience';
 import Footer from './components/Footer';
 import Resume from './components/Resume';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const App = () => {
   const [currentView, setCurrentView] = useState<'home' | 'resume'>('home');
+  const lenisRef = useRef<Lenis | null>(null);
+
+  // Initialize Lenis and sync with GSAP
+  useEffect(() => {
+    // Lenis Optimizations:
+    // 1. autoRaf: false prevents double requestAnimationFrame cycles since we drive it via gsap.ticker
+    // 2. lerp: 0.08 gives a buttery smooth momentum scroll
+    const lenis = new Lenis({
+      autoRaf: false,
+      lerp: 0.08,
+      wheelMultiplier: 1,
+    });
+    lenisRef.current = lenis;
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
+    };
+  }, []);
 
   const getOffsetTop = (id: string) => {
     const el = document.getElementById(id);
@@ -19,34 +53,42 @@ const App = () => {
     return rect.top + window.scrollY - 30;
   };
 
+  const scrollToPosition = (y: number) => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(y, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   const handleNavigate = (page: string) => {
     if (page === 'resume') {
       setCurrentView('resume');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToPosition(0);
     } else if (page === 'home') {
       setCurrentView('home');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToPosition(0);
     } else if (page === 'work') {
       if (currentView !== 'home') {
         setCurrentView('home');
         setTimeout(() => {
           const y = getOffsetTop('work');
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          scrollToPosition(y);
         }, 200);
       } else {
         const y = getOffsetTop('work');
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        scrollToPosition(y);
       }
     } else if (page === 'about') {
       if (currentView !== 'home') {
         setCurrentView('home');
         setTimeout(() => {
           const y = getOffsetTop('about');
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          scrollToPosition(y);
         }, 200);
       } else {
         const y = getOffsetTop('about');
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        scrollToPosition(y);
       }
     }
   };

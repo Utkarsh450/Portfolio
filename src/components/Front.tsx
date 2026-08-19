@@ -44,7 +44,7 @@ const Front = () => {
         </div>
         
         <div className="flex flex-col -my-10">
-           <div className='text-[8.8rem] text-zinc-50 font-regular font-satoshi tracking-tight'>
+           <div className='text-[8.8rem] text-zinc-50 font-medium font-satoshi tracking-tight'>
               {splitText("Software", 'p')}
            </div>
         
