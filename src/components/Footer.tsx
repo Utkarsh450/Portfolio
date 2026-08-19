@@ -1,8 +1,27 @@
-import { Globe, Mail } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef } from 'react';
+
+const LinkedinIcon = ({ size = 22, className = "" }: { size?: number; className?: string }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 0 0 1.65-1.64 1.65 1.65 0 0 0-1.65-1.65 1.64 1.64 0 0 0-1.64 1.65 1.64 1.64 0 0 0 1.64 1.64m1.39 9.74v-8.37H5.07v8.37h2.78z" />
+    </svg>
+);
+
+const InstagramIcon = ({ size = 22, className = "" }: { size?: number; className?: string }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+);
+
+const XIcon = ({ size = 22, className = "" }: { size?: number; className?: string }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,20 +146,41 @@ const Footer = () => {
                         {/* Email */}
                         <div className="flex flex-col gap-2">
                             <span className="text-white/60 text-[13px] font-medium font-satoshi mb-0.5">Email</span>
-                            <a href="mailto:snj.menon05@gmail.com" className="text-white text-xl md:text-[0.9rem] font-medium font-satoshi hover:underline tracking-tight">
+                            <a href="mailto:ubarnwal0802@gmail.com" className="text-white text-xl md:text-[0.9rem] font-medium font-satoshi hover:underline tracking-tight">
                                 ubarnwal0802@gmail.com
                             </a>
                         </div>
 
                         {/* Social */}
                         <div className="flex flex-col gap-2">
-                            <span className="text-white/60 text-[13px] font-medium font-satoshi mb-1">Social</span>
-                            <div className="flex items-center gap-3">
-                                <a href="#" className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform">
-                                    <Globe size={14} className="fill-current" />
+                            <span className="text-white/60 text-[13px] font-medium font-satoshi mb-0.5">Social</span>
+                            <div className="flex items-center gap-5">
+                                <a
+                                    href="https://www.linkedin.com/in/utkarsh-barnwal-801b56255/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="LinkedIn"
+                                    className="text-white hover:text-white/70 hover:scale-110 transition-all cursor-pointer flex items-center justify-center"
+                                >
+                                    <LinkedinIcon size={22} />
                                 </a>
-                                <a href="#" className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform">
-                                    <Mail size={14} className="fill-current" />
+                                <a
+                                    href="https://instagram.com/utkarshdotio"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Instagram"
+                                    className="text-white hover:text-white/70 hover:scale-110 transition-all cursor-pointer flex items-center justify-center"
+                                >
+                                    <InstagramIcon size={22} />
+                                </a>
+                                <a
+                                    href="https://x.com/UBarnwal15279"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="X (formerly Twitter)"
+                                    className="text-white hover:text-white/70 hover:scale-110 transition-all cursor-pointer flex items-center justify-center"
+                                >
+                                    <XIcon size={22} />
                                 </a>
                             </div>
                         </div>

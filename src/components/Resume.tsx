@@ -1,5 +1,4 @@
 import { ArrowLeft, Download, Mail, Phone, Globe } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
@@ -114,22 +113,22 @@ const Resume = ({ onBack }: ResumeProps) => {
 
                         {/* Contact Info */}
                         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1.5 text-[11px] font-medium text-zinc-600">
-                            <Link to="tel:+917015589772" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                            <a href="tel:+917015589772" className="flex items-center gap-1.5 hover:text-black transition-colors">
                                 <Phone size={12} className="text-zinc-400" />
                                 <span>+91-7015589772</span>
-                            </Link>
-                            <Link to="mailto:ubarnwal0802@gmail.com" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                            </a>
+                            <a href="mailto:ubarnwal0802@gmail.com" className="flex items-center gap-1.5 hover:text-black transition-colors">
                                 <Mail size={12} className="text-zinc-400" />
                                 <span>ubarnwal0802@gmail.com</span>
-                            </Link>
-                            <Link to="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                            </a>
+                            <a href="https://www.linkedin.com/in/utkarsh-barnwal-801b56255/" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-black transition-colors">
                                 <Globe size={12} className="text-zinc-400" />
                                 <span>LinkedIn</span>
-                            </Link>
-                            <Link to="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-black transition-colors">
+                            </a>
+                            <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-black transition-colors">
                                 <Globe size={12} className="text-zinc-400" />
                                 <span>Github</span>
-                            </Link>
+                            </a>
                         </div>
                     </div>
 

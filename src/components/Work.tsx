@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Lock, ShieldCheck, ChevronRight, Zap, Bot, Sparkles, Layers, CreditCard } from 'lucide-react';
+import { Lock, ShieldCheck, ChevronRight, Zap, Bot, Sparkles, Layers, CreditCard } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,7 +89,7 @@ const Work = () => {
         // Framer/Sanjay Menon style Premium Stack Animation (Progressive)
         const totalCards = cards.length;
         
-        cards.forEach((card, index) => {
+        cards.forEach((_, index) => {
             if (index === totalCards - 1) return; // last card stays untouched
 
             // The number of cards that will stack on top of THIS card

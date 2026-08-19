@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,10 +12,11 @@ import AboutMe from './components/AboutMe';
 import Experience from './components/Experience';
 import Footer from './components/Footer';
 import Resume from './components/Resume';
+import Loader from './pages/Loader';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const App = () => {
+const PortfolioHome = () => {
   const [currentView, setCurrentView] = useState<'home' | 'resume'>('home');
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -32,17 +34,16 @@ const App = () => {
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const tickerCallback = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
 
+    gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      gsap.ticker.remove(tickerCallback);
     };
   }, []);
 
@@ -99,8 +100,8 @@ const App = () => {
 
       {currentView === 'resume' ? (
         <>
-        <Resume onBack={() => handleNavigate('home')} />
-        <Footer/>
+          <Resume onBack={() => handleNavigate('home')} />
+          <Footer />
         </>
       ) : (
         <>
@@ -122,6 +123,28 @@ const App = () => {
         </>
       )}
     </div>
+  );
+};
+
+const MainPortfolioPage = () => {
+  const [showLoader, setShowLoader] = useState(true);
+
+  return (
+    <div className="relative w-full min-h-screen">
+      <PortfolioHome />
+      {showLoader && <Loader onComplete={() => setShowLoader(false)} />}
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/loader" element={<MainPortfolioPage />} />
+        <Route path="/*" element={<MainPortfolioPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
